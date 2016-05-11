@@ -1,0 +1,32 @@
+4/10/2016
+Started learning to code with intro programming MOOC
+
+5/6/2016
+Due to steep learning curve did not start writing this code until 5/6.
+This is something I will actually use.
+
+5/10/2016
+It's not pretty, but it looks to be returning the data.
+
+Trying out Github to save and work on different versions so I can try different
+things but still revert back to something in the past if I don't like it.
+May need some help at some point.
+
+
+======
+Try to work on this at least an hour each day.
+======
+
+-Remaining Tasks-
+  -test to make sure you're getting the data without errors
+  -learn some sql and try to output to a db
+  -figure out how to write/use functions to simplify
+  -figure out how to add a timer to refresh every 24 hours
+  -find holes
+  -clean up
+  -write something to pull leads only in local area and target
+      parameters
+  -see if I can pull and add only desired leads data from
+      db into the crm through api
+      -if too difficult or time consuming, figure out another useful way
+      to see the data
