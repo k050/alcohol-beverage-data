@@ -2,6 +2,11 @@
 Grab new license data from CA ABC for sales leads
     CA seems to refresh data daily.
 
+5/11/2016
+    CA website had a bad link.
+        added try-except(lic_number) right after tlst[] to skip these
+    added iso date just in case it's needed later
+
 """
 
 
@@ -14,7 +19,30 @@ import json
 import re
 import unicodedata
 import sqlite3
+import dateutil.parser as dparser
 
+
+#sql outside loop to create table.
+conn = sqlite3.connect('abc.db')
+    #update path after deciding where to put it
+cur = conn.cursor()
+cur.execute('''CREATE TABLE IF NOT EXISTS ABC_data(
+    id INTEGER NOT NULL UNIQUE PRIMARY KEY AUTOINCREMENT,
+    license_number TEXT NOT NULL UNIQUE,
+    owner_name TEXT,
+    dba TEXT,
+    contact_name TEXT,
+    status_date TEXT,
+    lic_type TEXT,
+    street TEXT,
+    city TEXT,
+    state TEXT,
+    zip TEXT,
+    county TEXT,
+    census_tract TEXT,
+    abc_region TEXT,
+    transfer_from TEXT,
+    iso_date TEXT)''')
 
 url = "https://www.abc.ca.gov/datport/SubDlyNuRep.asp"
 html = urllib.urlopen(url).read()
@@ -69,6 +97,14 @@ for line in links:
     #sorting through multiple possibilities to find a person
     officer_lst = []
     #print tlst
+    try:
+        lic_pos = int(tlst.index("License Number: ")+1)
+    except:
+        print "+++Error+++", line
+        lcount +=1
+        continue
+
+
     for officer in tlst:
         officer = re.findall("OFFICER: ?(.*)",officer)
         #member = re.findall("MEMBER: ?(.*)", officer)
@@ -91,8 +127,8 @@ for line in links:
     #print officer_lst
     #print tlst
 
-
-    lic_pos = int(tlst.index("License Number: ")+1)
+    #used lic_pos in try except data return error filter.
+    #lic_pos = int(tlst.index("License Number: ")+1)
     owner_pos=tlst.index("Primary Owner: ")+1
     office_pos = tlst.index("ABC Office of Application:  ")+1
     address_pos = tlst.index("Address: ")+1
@@ -151,15 +187,23 @@ for line in links:
     print "Transfer From: ", prev
 
     print "+Count+", lcount
+
+    idate = dparser.parse(sdate)
+    iso_date = idate.isoformat()
+    print "ISO date" , iso_date, " type ", type(iso_date)
     print '========++++++====+++++'
     lcount += 1
 
 
-"""
-#learn sql
 
-conn = sqlite3.connect('sqlite/abc.db')
-cur = conn.cursor()
+    #inside loop
 
-cur.execute("CREATE TABLE IF NOT EXISTS ABC_data...
-"""
+    cur.execute('''INSERT OR REPLACE INTO ABC_data(license_number, owner_name,
+        dba, contact_name, status_date, street, city, state,
+        zip, county, census_tract, abc_region, transfer_from, lic_type, iso_date)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)''', (license_number, owner_name,
+                dba, officer, sdate, address, city,
+                state, zipcode, county, census, office,
+                prev, lic_type, iso_date))
+conn.commit()
+conn.close()
