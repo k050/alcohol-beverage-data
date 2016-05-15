@@ -22,7 +22,7 @@ CA website had a bad link.  Added try-except(lic_number) right after tlst[] to s
 
 5/13/2016
     Thinking about how to execute this automatically test each day.
-    I decided to order a Pi and scheduling the program to run through linux(which I have no idea how to use).  This task may take a few days.
+    I decided to order a Pi and scheduling the program to run through linux(which I have no idea how to use).  This task may take a few days.  Also, created a log file on Pi to leave a record of the execution.
 
 5/14/2016
     Set-up the Pi.  Created a Crontab file to execute script everyday at 5PM.  If you do this again, don't forget to edit directory and file read, write, execute permissions for the database.  Otherwise program will throw an error when attempting to write to db.
