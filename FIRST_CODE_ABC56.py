@@ -2,47 +2,45 @@
 Grab new license data from CA ABC for sales leads
     CA seems to refresh data daily.
 
-5/11/2016
-    CA website had a bad link.
-        added try-except(lic_number) right after tlst[] to skip these
-    added iso date just in case it's needed later
-
 """
 
 
 
 import urllib
 from bs4 import BeautifulSoup
-import json
+#import json
 #import xml.etree.ElementTree as ET
 #import sys
 import re
 import unicodedata
 import sqlite3
 import dateutil.parser as dparser
+import time
+
 
 
 #sql outside loop to create table.
 conn = sqlite3.connect('abc.db')
     #update path after deciding where to put it
 cur = conn.cursor()
-cur.execute('''CREATE TABLE IF NOT EXISTS ABC_data(
-    id INTEGER NOT NULL UNIQUE PRIMARY KEY AUTOINCREMENT,
-    license_number TEXT NOT NULL UNIQUE,
-    owner_name TEXT,
-    dba TEXT,
-    contact_name TEXT,
-    status_date TEXT,
-    lic_type TEXT,
-    street TEXT,
-    city TEXT,
-    state TEXT,
-    zip TEXT,
-    county TEXT,
-    census_tract TEXT,
-    abc_region TEXT,
-    transfer_from TEXT,
-    iso_date TEXT)''')
+
+#cur.execute('''CREATE TABLE IF NOT EXISTS ABC_data(
+#    id INTEGER NOT NULL UNIQUE PRIMARY KEY AUTOINCREMENT,
+#    license_number TEXT UNIQUE,
+#    owner_name TEXT,
+#    dba TEXT,
+#    contact_name TEXT,
+#    status_date TEXT,
+#    lic_type TEXT,
+#    street TEXT,
+#    city TEXT,
+#    state TEXT,
+#    zip TEXT,
+#    county TEXT,
+#    census_tract TEXT,
+#    abc_region TEXT,
+#    transfer_from TEXT,
+#    iso_date TEXT)''')
 
 url = "https://www.abc.ca.gov/datport/SubDlyNuRep.asp"
 html = urllib.urlopen(url).read()
@@ -205,5 +203,6 @@ for line in links:
                 dba, officer, sdate, address, city,
                 state, zipcode, county, census, office,
                 prev, lic_type, iso_date))
+
 conn.commit()
 conn.close()
