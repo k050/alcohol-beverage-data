@@ -13,8 +13,7 @@ things but still revert back to something in the past if I don't like it.
 May need some help at some point.
 
 5/11/2016
-CA website had a bad link.
-        added try-except(lic_number) right after tlst[] to skip these
-    added iso date just in case it's needed later'''
+CA website had a bad link.  Added try-except(lic_number) right after tlst[] to skip these.  Added iso date just in case it's needed later.
+
 
 
