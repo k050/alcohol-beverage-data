@@ -26,5 +26,9 @@ CA website had a bad link.  Added try-except(lic_number) right after tlst[] to s
 
 5/14/2016
     Set-up the Pi.  Created a Crontab file to execute script everyday at 5PM.  If you do this again, don't forget to edit directory and file read, write, execute permissions for the database.  Otherwise program will throw an error when attempting to write to db.
+    
+5/17/2016
+    Added Dropbox-Uploader script (Thank you to the person that created it!) to crontab to upload the db file so I can share the db.  We can start using the compiled info right away using the table feature in db viewer.  
+    It's just a temporary solution, while I think about how to to best query the database and output only desired leads.  Less spare-time these days to work on this.
 
 
