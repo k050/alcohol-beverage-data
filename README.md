@@ -30,5 +30,17 @@ CA website had a bad link.  Added try-except(lic_number) right after tlst[] to s
 5/17/2016
     Added Dropbox-Uploader script (Thank you to the person that created it!) to crontab to upload the db file so I can share the db.  We can start using the compiled info right away using the table feature in db viewer.  
     It's just a temporary solution, while I think about how to to best query the database and output only desired leads.  Less spare-time these days to work on this.
+    
+5/18/2016 - 5/19/2016
+    Noticed that sometimes the census tract field is blank from the CA server.  Added Try-Except to make the field None if there's no data instead if filling the field in with the next heading.
+    Created a query script to look for entries from the five counties in Southern CA that we operate in, further reduced by a list of common last names based on target ethnic demographic, output a csv file with only relevant data that a sales person would want to look at or use.
+    Added another Dropbox-Uploader for the outputted csv file that gets overwritten everyday.
+    Made required crontab updates.
+    
+5/20/2016
+    This program is FINALLY running and live a Raspberry Pi!  The csv file shared to office staff will be used for direct mail marketing starting next week!
 
-
+5/21/2016
+    Noticed the programs weren't being executed automatically at their schedule times.
+    Checked online sources for possible errors with my crontab, but did not notice any obvious issues.  Ended up re-writing the crontab file again from scratch and it seems to be working now.(..?)  I added a time updater with all fields as *wildcards and it's updating the log file every minute.
+    I'll have to keep checking on it this weekend.  
