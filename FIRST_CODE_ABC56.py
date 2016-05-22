@@ -2,6 +2,7 @@
 Grab new license data from CA ABC for sales leads
     CA seems to refresh data daily.
 
+
 """
 
 
@@ -10,7 +11,7 @@ import urllib
 from bs4 import BeautifulSoup
 #import json
 #import xml.etree.ElementTree as ET
-#import sys
+import sys
 import re
 import unicodedata
 import sqlite3
@@ -23,25 +24,25 @@ import time
 conn = sqlite3.connect('abc.db')
     #update path after deciding where to put it
 cur = conn.cursor()
-
-#cur.execute('''CREATE TABLE IF NOT EXISTS ABC_data(
-#    id INTEGER NOT NULL UNIQUE PRIMARY KEY AUTOINCREMENT,
-#    license_number TEXT UNIQUE,
-#    owner_name TEXT,
-#    dba TEXT,
-#    contact_name TEXT,
-#    status_date TEXT,
-#    lic_type TEXT,
-#    street TEXT,
-#    city TEXT,
-#    state TEXT,
-#    zip TEXT,
-#    county TEXT,
-#    census_tract TEXT,
-#    abc_region TEXT,
-#    transfer_from TEXT,
-#    iso_date TEXT)''')
-
+"""
+cur.execute('''CREATE TABLE IF NOT EXISTS ABC_data(
+    id INTEGER NOT NULL UNIQUE PRIMARY KEY AUTOINCREMENT,
+    license_number TEXT,
+    owner_name TEXT,
+    dba TEXT,
+    contact_name TEXT,
+    status_date TEXT,
+    lic_type TEXT,
+    street TEXT,
+    city TEXT,
+    state TEXT,
+    zip TEXT,
+    county TEXT,
+    census_tract TEXT,
+    abc_region TEXT,
+    transfer_from TEXT,
+    iso_date TEXT)''')
+"""
 url = "https://www.abc.ca.gov/datport/SubDlyNuRep.asp"
 html = urllib.urlopen(url).read()
 
@@ -167,6 +168,11 @@ for line in links:
     zipcode = tlst[zip_pos]
     lic_type = tlst[lic_type_pos]
     sdate = tlst[sdate_pos] #may need to re-format date
+
+    try:
+        census_test = float(census)
+    except:
+        census = None
 
 
     print tlst[lic_pos-1], license_number
