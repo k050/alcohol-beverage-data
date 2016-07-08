@@ -1,4 +1,4 @@
-# alcohol-beverage-data beginner python
+# alcohol-beverage-data python
 4/10/2016
 Started learning to code with intro programming MOOC
 
@@ -44,3 +44,6 @@ CA website had a bad link.  Added try-except(lic_number) right after tlst[] to s
     Noticed the programs weren't being executed automatically at their schedule times.
     Checked online sources for possible errors with my crontab, but did not notice any obvious issues.  Ended up re-writing the crontab file again from scratch and it seems to be working now.(..?)  I added a time updater with all fields as *wildcards and it's updating the log file every minute.
     I'll have to keep checking on it this weekend.  
+
+7/7/2016
+    Code has been running for a couple of months now.  A few more queries programs with different outputs have been added based on requests.  I haven't gotten around to cleaning up the main webscraping code due to time constraints.  With everything working without issue and no real need for more efficiency there isn't a huge need for cleanup.  Pleasantly surprised by the reliability and uptime of the Raspberry Pi.
