@@ -2,9 +2,9 @@ import sqlite3
 import csv
 
 
-conn = sqlite3.connect('abc.db')
+conn = sqlite3.connect('/home/pi/ABC/abc.db')
 cur = conn.cursor()
-fhand = open('last_names.txt')
+fhand = open('/home/pi/ABC/last_names.txt')
 
 
 names_lst = []
@@ -51,6 +51,6 @@ for i in rows3:
     rows4.append(temp_row3)
 #print rows4
 
-with open('koreanLaOc.csv', 'wb') as f:
+with open('/home/pi/ABC/koreanLaOc.csv', 'wb') as f:
     writer = csv.writer(f)
     writer.writerows(rows4)

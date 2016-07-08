@@ -21,7 +21,7 @@ import time
 
 
 #sql outside loop to create table.
-conn = sqlite3.connect('abc.db')
+conn = sqlite3.connect('/home/pi/ABC/abc.db')
     #update path after deciding where to put it
 cur = conn.cursor()
 """
