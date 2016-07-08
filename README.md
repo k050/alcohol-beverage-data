@@ -46,4 +46,4 @@ CA website had a bad link.  Added try-except(lic_number) right after tlst[] to s
     I'll have to keep checking on it this weekend.  
 
 7/7/2016
-    Code has been running for a couple of months now.  A few more queries programs with different outputs have been added based on requests.  I haven't gotten around to cleaning up the main webscraping code due to time constraints.  With everything working without issue and no real need for more efficiency there isn't a huge need for cleanup.  Pleasantly surprised by the reliability and uptime of the Raspberry Pi.
+    Code has been running for a couple of months now.  A few more query programs with different outputs have been added based on requests.  I haven't gotten around to cleaning up the main webscraping code due to time constraints.  With everything working without issue and no real need for more efficiency there isn't a huge need for cleanup.  Pleasantly surprised by the reliability and uptime of the Raspberry Pi.
